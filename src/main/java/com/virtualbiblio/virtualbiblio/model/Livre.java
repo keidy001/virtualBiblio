@@ -19,10 +19,12 @@ public class Livre implements Serializable {
     private Category category;
     @ManyToOne
     private Admin admin;
-    @ManyToMany(mappedBy = "livre", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "utilisateur_Livres")
     private List<Utilisateur> utilisateur;
-
+    @ManyToOne
+    private Librairy librairy;
+    private boolean delleted= false;
 
     public Livre() {
     }

@@ -13,16 +13,21 @@ public class Librairy implements Serializable {
     private String adresse;
     private String telephone;
     private String email;
-    @OneToMany(mappedBy = "livre")
+    @OneToMany(mappedBy = "librairy")
     private List<Livre> livre;
     @ManyToOne
     private Admin admin;
 
-
     public Librairy() {
+        this.delleted = delleted;
     }
 
-    public Librairy(String nom, String adresse, String telephone, String email, List<Livre> livre, Admin admin) {
+    private boolean delleted= false;
+
+
+
+
+    public Librairy(String nom, String adresse, String telephone, String email, List<Livre> livre, Admin admin,boolean delleted) {
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
@@ -85,5 +90,13 @@ public class Librairy implements Serializable {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public boolean isDelleted() {
+        return delleted;
+    }
+
+    public void setDelleted(boolean delleted) {
+        this.delleted = delleted;
     }
 }

@@ -23,11 +23,13 @@ public class Utilisateur implements Serializable {
     private List<Livre> livre;
     @ManyToOne
     Admin admin;
+    private boolean delleted= false;
 
     public Utilisateur() {
+
     }
 
-    public Utilisateur(String nom, String prenom, String email, int telephone, String login, String password, String profile, List<Livre> livre, Admin admin) {
+    public Utilisateur(String nom, String prenom, String email, int telephone, String login, String password, String profile, List<Livre> livre, Admin admin,boolean delleted) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -37,6 +39,7 @@ public class Utilisateur implements Serializable {
         this.profile = profile;
         this.livre = livre;
         this.admin = admin;
+        this.delleted = delleted;
     }
 
     public Long getIdUtilisateur() {
@@ -117,5 +120,13 @@ public class Utilisateur implements Serializable {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public boolean isDelleted() {
+        return delleted;
+    }
+
+    public void setDelleted(boolean delleted) {
+        this.delleted = delleted;
     }
 }
