@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.serviceImpl;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Utilisateur;
 import com.virtualbiblio.virtualbiblio.repository.UtilisateurRepository;
 import com.virtualbiblio.virtualbiblio.service.UtilisateurService;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
     @Autowired
@@ -49,16 +52,33 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Utilisateur disable(Utilisateur utilisateur, Long id) {
+    public Utilisateur disable(Long id) {
         Utilisateur disable = utilisateurRepository.findById(id).get();
         disable.setDelleted(true);
         return null;
     }
 
     @Override
-    public Utilisateur restore(Utilisateur utilisateur, Long id) {
+    public Utilisateur restore(Long id) {
         Utilisateur restore = utilisateurRepository.findById(id).get();
         restore.setDelleted(false);
         return null;
+    }
+
+    @Override
+    public Utilisateur login(String login, String password) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findByLoginAndPassword(login,password);
+
+        if(utilisateur.isEmpty())
+        {
+            return null;
+        }
+
+        if(utilisateur.get().isDelleted())
+        {
+            throw new IllegalStateException("Votre compte administrateur est désactivé !");
+        }
+
+        return utilisateur.get();
     }
 }

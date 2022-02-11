@@ -12,6 +12,6 @@ public interface CategoryService {
     Category updateCategory(Category category, Long id);
     Category categoryParId(Long id);
     Void deleteCategory(Long id);
-    Category disable(Category category, Long id);
-    Category restore(Category category, Long id);
+    Category disable(Long id);
+    Category restore(Long id);
 }

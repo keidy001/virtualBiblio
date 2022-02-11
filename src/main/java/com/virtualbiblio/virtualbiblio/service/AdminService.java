@@ -15,5 +15,6 @@ public interface AdminService {
      Void deleteAdmin(Long id);
      Admin disable(Long id);
      Admin restore(Long id);
+     Admin login(String login, String password);
 
 }

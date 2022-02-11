@@ -43,14 +43,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category disable(Category category, Long id) {
+    public Category disable(Long id) {
         Category disable = categoryRepository.findById(id).get();
         disable.setDelleted(true);
         return categoryRepository.save(disable);
     }
 
     @Override
-    public Category restore(Category category, Long id) {
+    public Category restore(Long id) {
         Category restore = categoryRepository.findById(id).get();
         restore.setDelleted(false);
         return categoryRepository.save(restore);

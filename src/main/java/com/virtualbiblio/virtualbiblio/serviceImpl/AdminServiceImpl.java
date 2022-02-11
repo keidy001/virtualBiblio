@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AdminServiceImpl implements AdminService {
     @Autowired
@@ -57,5 +59,22 @@ public class AdminServiceImpl implements AdminService {
         Admin delete = adminRepository.findById(id).get();
         delete.setDelleted(false);
         return adminRepository.save(delete);
+    }
+
+    @Override
+    public Admin login(String login, String password) {
+         Optional<Admin> admin = adminRepository.findByLoginAndPassword(login,password);
+
+        if(admin.isEmpty())
+        {
+            return null;
+        }
+
+        if(admin.get().isDelleted())
+        {
+            throw new IllegalStateException("Votre compte administrateur est désactivé !");
+        }
+
+        return admin.get();
     }
 }

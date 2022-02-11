@@ -13,7 +13,7 @@ public interface LibrairyService {
     List<Librairy> listLibrairy();
     Librairy updateLibrairy(Librairy librairy, Long id);
     Void delete(Long id);
-    Librairy disable(Librairy librairy, Long id);
-    Librairy restore(Librairy librairy, Long id);
+    Librairy disable(Long id);
+    Librairy restore(Long id);
 
 }

@@ -9,37 +9,37 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/category/")
+@RequestMapping("/api/category")
 
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
-@PostMapping("ajout")
+@PostMapping("/ajouter")
     public String ajoutCategory(@RequestBody Category category) {
         return categoryService.ajoutCategory(category);
     }
-    @GetMapping("list")
+    @GetMapping("/lister")
     public List<Category> allCategory() {
         return categoryService.allCategory();
     }
-    @PutMapping("update/{id}")
+    @PutMapping("/modifier/{id}")
     public Category updateCategory(@RequestBody Category category, @PathVariable("id") Long id) {
         return categoryService.updateCategory(category, id);
     }
-    @GetMapping("affiche/{id}")
+    @GetMapping("/afficher/{id}")
     public Category categoryParId(@PathVariable("id") Long id) {
         return categoryService.categoryParId(id);
     }
-    @DeleteMapping("delete")
+    @DeleteMapping("/supprimer")
     public Void deleteCategory(Long id) {
         return categoryService.deleteCategory(id);
     }
-    @GetMapping("disable")
-    public Category disable(@RequestBody Category category, @PathVariable Long id) {
-        return categoryService.disable(category, id);
+    @GetMapping("/disable")
+    public Category disable(@PathVariable Long id) {
+        return categoryService.disable(id);
     }
-    @PutMapping("restore")
-    public Category restore(Category category, Long id) {
-        return categoryService.restore(category, id);
+    @PutMapping("/restore")
+    public Category restore(@PathVariable("id") Long id) {
+        return categoryService.restore(id);
     }
 }

@@ -49,14 +49,14 @@ public class LibrairyServiceImpl implements LibrairyService {
     }
 
     @Override
-    public Librairy disable(Librairy librairy, Long id) {
+    public Librairy disable(Long id) {
         Librairy disable =librairyRepository.findById(id).get();
         disable.setDelleted(true);
         return  librairyRepository.save(disable);
     }
 
     @Override
-    public Librairy restore(Librairy librairy, Long id) {
+    public Librairy restore(Long id) {
         Librairy restore = librairyRepository.findById(id).get();
         restore.setDelleted(false);
         return librairyRepository.save(restore);

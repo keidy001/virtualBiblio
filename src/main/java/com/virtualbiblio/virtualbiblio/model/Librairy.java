@@ -13,6 +13,7 @@ public class Librairy implements Serializable {
     private String adresse;
     private String telephone;
     private String email;
+    private String photo;
     @OneToMany(mappedBy = "librairy")
     private List<Livre> livre;
     @ManyToOne
@@ -27,13 +28,15 @@ public class Librairy implements Serializable {
 
 
 
-    public Librairy(String nom, String adresse, String telephone, String email, List<Livre> livre, Admin admin,boolean delleted) {
+    public Librairy(String nom, String adresse, String telephone, String email,String photo, List<Livre> livre, Admin admin,boolean delleted) {
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
+        this.photo = photo;
         this.livre = livre;
         this.admin = admin;
+
     }
 
     public Long getIdLibrairy() {
@@ -98,5 +101,13 @@ public class Librairy implements Serializable {
 
     public void setDelleted(boolean delleted) {
         this.delleted = delleted;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

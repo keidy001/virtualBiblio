@@ -15,6 +15,7 @@ public class Admin implements Serializable {
     private int telephone;
     private String login;
     private String password;
+    private String photo;
     @OneToMany(mappedBy = "admin")
     private List<Livre> livre;
     private boolean delleted= false;
@@ -24,7 +25,7 @@ public class Admin implements Serializable {
 
 
 
-    public Admin(String nom, String prenom, String email, int telephone, String login, String password, List<Livre> livre,boolean delleted) {
+    public Admin(String nom, String prenom, String email, int telephone, String login, String password,String photo, List<Livre> livre,boolean delleted) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -33,6 +34,7 @@ public class Admin implements Serializable {
         this.password = password;
         this.livre = livre;
         this.delleted = delleted;
+        this.photo = photo;
 
     }
 
@@ -106,5 +108,13 @@ public class Admin implements Serializable {
 
     public void setDelleted(boolean delleted) {
         this.delleted = delleted;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

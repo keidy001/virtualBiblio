@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.controller;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Utilisateur;
 import com.virtualbiblio.virtualbiblio.repository.UtilisateurRepository;
 import com.virtualbiblio.virtualbiblio.service.UtilisateurService;
@@ -35,11 +36,15 @@ public class UtilisateurController {
         return utilisateurService.deleteUtilisateur(id);
     }
     @PutMapping("/disable/{id}")
-    public Utilisateur disable(@RequestBody Utilisateur utilisateur, @PathVariable("id") Long id) {
-        return utilisateurService.disable(utilisateur, id);
+    public Utilisateur disable(@PathVariable("id") Long id) {
+        return utilisateurService.disable(id);
     }
     @PutMapping("/restore")
-    public Utilisateur restore(Utilisateur utilisateur, Long id) {
-        return utilisateurService.restore(utilisateur, id);
+    public Utilisateur restore(@PathVariable("id") Long id) {
+        return utilisateurService.restore(id);
+    }
+    @GetMapping("/login")
+    public Utilisateur login(@RequestParam String login, @RequestParam String password) {
+        return utilisateurService.login(login, password);
     }
 }
