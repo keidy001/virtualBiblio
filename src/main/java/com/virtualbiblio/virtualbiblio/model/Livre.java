@@ -12,11 +12,13 @@ public class Livre implements Serializable {
     private String titre;
     private String auteur;
     private String sommaire;
+    private String description;
     @Enumerated(EnumType.STRING)
     private Format format;
     private String domaine;
     private double prix;
     private String photo;
+    private String livre;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -31,10 +33,11 @@ public class Livre implements Serializable {
     public Livre() {
     }
 
-    public Livre(String titre, String auteur, String sommaire, Format format, String domaine, double prix,String photo, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+    public Livre(String titre, String auteur, String sommaire,String description, Format format, String domaine, double prix,String photo,String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
+        this.description = description;
         this.format = format;
         this.domaine = domaine;
         this.prix = prix;
@@ -44,6 +47,7 @@ public class Livre implements Serializable {
         this.librairy =librairy;
         this.delleted =delleted;
         this.photo =photo;
+        this.livre = livre;
     }
 
     public Long getIdLivre() {
@@ -148,5 +152,21 @@ public class Livre implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String getLivre() {
+        return livre;
+    }
+
+    public void setLivre(String livre) {
+        this.livre = livre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
