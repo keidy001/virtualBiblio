@@ -16,6 +16,7 @@ public class Livre implements Serializable {
     @Enumerated(EnumType.STRING)
     private Format format;
     private String domaine;
+    private String livre;
     private double prix;
     private String photo;
     private String livre;
@@ -33,13 +34,18 @@ public class Livre implements Serializable {
     public Livre() {
     }
 
+<<<<<<< HEAD
     public Livre(String titre, String auteur, String sommaire,String description, Format format, String domaine, double prix,String photo,String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+=======
+    public Livre(String titre, String auteur, String sommaire, Format format, String domaine, String livre, double prix,String photo, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+>>>>>>> 9979702d0fb5c08b3c0102dbb1cffa84587303cf
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
         this.description = description;
         this.format = format;
         this.domaine = domaine;
+        this.livre = livre;
         this.prix = prix;
         this.category = category;
         this.admin = admin;
@@ -161,6 +167,7 @@ public class Livre implements Serializable {
     public void setLivre(String livre) {
         this.livre = livre;
     }
+<<<<<<< HEAD
 
     public String getDescription() {
         return description;
@@ -169,4 +176,6 @@ public class Livre implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+=======
+>>>>>>> 9979702d0fb5c08b3c0102dbb1cffa84587303cf
 }

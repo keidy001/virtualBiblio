@@ -3,7 +3,9 @@ package com.virtualbiblio.virtualbiblio.service;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -18,5 +20,5 @@ public interface LivreService {
     Livre disable(Long id);
     Livre restore(Long id);
     Collection<Livre> Format(Format format);
-
+    void  uplodFile(MultipartFile file) throws IOException;
 }

@@ -4,8 +4,11 @@ import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import com.virtualbiblio.virtualbiblio.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +20,9 @@ public class LivreController {
     @Autowired
     LivreService livreService;
 
-    @PostMapping("/ajouter")
-    public String ajouter(@RequestBody Livre livre) {
+    @PostMapping(value= "/ajouter", consumes = { MediaType. APPLICATION_JSON_VALUE ,MediaType. MULTIPART_FORM_DATA_VALUE })
+    public String ajouter(@RequestParam("file") @RequestBody Livre livre,MultipartFile file) throws  IllegalStateException, IOException  {
+        livreService.uplodFile(file);
         return livreService.ajouter(livre);
     }
     @GetMapping("/afficher/{id}")
@@ -48,5 +52,9 @@ public class LivreController {
     @GetMapping("/livrebyformat/{format}")
     public Collection<Livre> Format(@PathVariable("format") Format format) {
         return livreService.Format(format);
+    }
+    @PostMapping("file")
+    public void uploadFile(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+            livreService.uplodFile(file);
     }
 }

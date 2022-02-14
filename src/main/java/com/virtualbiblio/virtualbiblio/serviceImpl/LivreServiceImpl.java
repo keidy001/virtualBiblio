@@ -6,7 +6,11 @@ import com.virtualbiblio.virtualbiblio.repository.LivreRepository;
 import com.virtualbiblio.virtualbiblio.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -68,4 +72,10 @@ public class LivreServiceImpl implements LivreService {
     public Collection<Livre> Format(Format format) {
         return livreRepository.findByFormat(format);
     }
+
+@PostMapping
+ public void uplodFile(MultipartFile file) throws IllegalStateException, IOException {
+  file.transferTo(new File("C:\\Users\\Ghost\\Downloads\\"+file.getOriginalFilename()));
+ }
+
 }
