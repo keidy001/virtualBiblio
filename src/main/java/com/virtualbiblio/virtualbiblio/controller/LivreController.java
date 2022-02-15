@@ -1,10 +1,14 @@
 package com.virtualbiblio.virtualbiblio.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
+import com.virtualbiblio.virtualbiblio.model.Response;
 import com.virtualbiblio.virtualbiblio.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,10 +24,19 @@ public class LivreController {
     @Autowired
     LivreService livreService;
 
-    @PostMapping(value= "/ajouter", consumes = { MediaType. APPLICATION_JSON_VALUE ,MediaType. MULTIPART_FORM_DATA_VALUE })
-    public String ajouter(@RequestParam("file") @RequestBody Livre livre,MultipartFile file) throws  IllegalStateException, IOException  {
-        livreService.uplodFile(file);
-        return livreService.ajouter(livre);
+
+    @PostMapping("/ajouter")
+    public ResponseEntity<Response> savedata(@RequestParam("file") MultipartFile file ,@RequestParam("data") String data) throws  IllegalStateException, IOException  {
+        Livre livre = new ObjectMapper().readValue(data, Livre.class);
+        livre.setPhoto(file.getBytes());
+        livre.setPhotoName(file.getOriginalFilename());
+        Livre dblivre = livreService.ajouter(livre);
+        if (dblivre!=null){
+            return new ResponseEntity<Response>(new Response("Ajout effectuer avec succès"), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Response>(new Response("Erreur lors de l'ajout"), HttpStatus.OK);
+
+        }
     }
     @GetMapping("/afficher/{id}")
     public Livre afficher(@PathVariable("id") Long id) {
@@ -54,7 +67,7 @@ public class LivreController {
         return livreService.Format(format);
     }
     @PostMapping("file")
-    public void uploadFile(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+    public void uploadFile( Livre livre,  @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
             livreService.uplodFile(file);
     }
 }

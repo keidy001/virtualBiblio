@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public interface LivreService {
-    String ajouter(Livre livre);
+    Livre ajouter(Livre livre);
     Livre afficher(Long id);
     List<Livre> lister();
     Livre update(Livre livre,Long id);

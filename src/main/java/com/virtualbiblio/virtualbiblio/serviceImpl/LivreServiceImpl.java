@@ -20,9 +20,9 @@ public class LivreServiceImpl implements LivreService {
     @Autowired
     LivreRepository livreRepository;
     @Override
-    public String ajouter(Livre livre) {
-        livreRepository.save(livre);
-        return null;
+    public Livre ajouter(Livre livre) {
+        return    livreRepository.save(livre);
+
     }
 
     @Override

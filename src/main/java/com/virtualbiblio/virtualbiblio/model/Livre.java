@@ -18,8 +18,8 @@ public class Livre implements Serializable {
     private String domaine;
     private String livre;
     private double prix;
-    private String photo;
-    private String livre;
+    private byte[] photo;
+    private String photoName;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -34,35 +34,24 @@ public class Livre implements Serializable {
     public Livre() {
     }
 
-<<<<<<< HEAD
-    public Livre(String titre, String auteur, String sommaire,String description, Format format, String domaine, double prix,String photo,String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
-=======
-    public Livre(String titre, String auteur, String sommaire, Format format, String domaine, String livre, double prix,String photo, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
->>>>>>> 9979702d0fb5c08b3c0102dbb1cffa84587303cf
+    public Livre(String titre, String auteur, String sommaire,String description, Format format, String domaine, double prix,String photoName,String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
         this.description = description;
         this.format = format;
         this.domaine = domaine;
-        this.livre = livre;
         this.prix = prix;
         this.category = category;
         this.admin = admin;
         this.utilisateur = utilisateur;
         this.librairy =librairy;
         this.delleted =delleted;
-        this.photo =photo;
+        this.photoName =photoName;
         this.livre = livre;
     }
 
-    public Long getIdLivre() {
-        return idLivre;
-    }
 
-    public void setIdLivre(Long idLivre) {
-        this.idLivre = idLivre;
-    }
 
     public String getTitre() {
         return titre;
@@ -152,12 +141,12 @@ public class Livre implements Serializable {
         this.librairy = librairy;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getPhotoName() {
+        return photoName;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     public String getLivre() {
@@ -167,7 +156,6 @@ public class Livre implements Serializable {
     public void setLivre(String livre) {
         this.livre = livre;
     }
-<<<<<<< HEAD
 
     public String getDescription() {
         return description;
@@ -176,6 +164,12 @@ public class Livre implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-=======
->>>>>>> 9979702d0fb5c08b3c0102dbb1cffa84587303cf
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 }
