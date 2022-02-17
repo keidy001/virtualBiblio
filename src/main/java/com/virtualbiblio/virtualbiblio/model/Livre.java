@@ -19,6 +19,10 @@ public class Livre implements Serializable {
     private String livre;
     private double prix;
     private String photo;
+<<<<<<< HEAD
+=======
+    private String photoName;
+>>>>>>> 0632ab20a9048eb5c08707069dbe39e02fa04cb0
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -33,22 +37,30 @@ public class Livre implements Serializable {
     public Livre() {
     }
 
+<<<<<<< HEAD
     public Livre(String titre, String auteur, String sommaire,String description, Format format, String domaine, double prix,String photo,String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+=======
+
+
+
+
+    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix, String photoName, String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+>>>>>>> 0632ab20a9048eb5c08707069dbe39e02fa04cb0
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
         this.description = description;
         this.format = format;
         this.domaine = domaine;
-        this.livre = livre;
         this.prix = prix;
         this.category = category;
         this.admin = admin;
         this.utilisateur = utilisateur;
         this.librairy =librairy;
         this.delleted =delleted;
-        this.photo =photo;
+        this.photoName =photoName;
         this.livre = livre;
+        this.photo = photo;
     }
 
 
@@ -141,12 +153,12 @@ public class Livre implements Serializable {
         this.librairy = librairy;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getPhotoName() {
+        return photoName;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     public String getLivre() {
@@ -165,6 +177,17 @@ public class Livre implements Serializable {
         this.description = description;
     }
 
+<<<<<<< HEAD
+=======
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+>>>>>>> 0632ab20a9048eb5c08707069dbe39e02fa04cb0
     public Long getIdLivre() {
         return idLivre;
     }
@@ -173,3 +196,4 @@ public class Livre implements Serializable {
         this.idLivre = idLivre;
     }
 }
+

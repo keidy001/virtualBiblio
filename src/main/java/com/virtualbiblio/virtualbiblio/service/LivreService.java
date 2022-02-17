@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public interface LivreService {
-    String ajouter(Livre livre);
+    Livre ajouter(Livre livre);
     Livre afficher(Long id);
     List<Livre> lister();
     Livre update(Livre livre,Long id);
@@ -21,4 +21,7 @@ public interface LivreService {
     Livre restore(Long id);
     Collection<Livre> Format(Format format);
     void  uplodFile(MultipartFile file) throws IOException;
+    Byte[] getPhoto(Long id) throws IllegalStateException, IOException;
+    Byte[] getPdf(Long id) throws IllegalStateException, IOException;
+
 }

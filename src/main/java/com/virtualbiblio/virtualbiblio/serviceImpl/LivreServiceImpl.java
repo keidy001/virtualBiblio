@@ -11,6 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +23,9 @@ public class LivreServiceImpl implements LivreService {
     @Autowired
     LivreRepository livreRepository;
     @Override
-    public String ajouter(Livre livre) {
-        livreRepository.save(livre);
-        return null;
+    public Livre ajouter(Livre livre) {
+        return    livreRepository.save(livre);
+
     }
 
     @Override
@@ -77,5 +80,25 @@ public class LivreServiceImpl implements LivreService {
  public void uplodFile(MultipartFile file) throws IllegalStateException, IOException {
   file.transferTo(new File("C:\\Users\\Ghost\\Downloads\\"+file.getOriginalFilename()));
  }
+
+    @Override
+    public Byte[] getPhoto(Long id) throws IllegalStateException, IOException {
+        Livre photo = livreRepository.findById(id).get();
+        String livrePhoto =photo.getPhoto();
+        File file = new File("src/main/resources/images/"+ photo.getIdLivre() +"/" +livrePhoto);
+        Path path = Paths.get(file.toURI());
+        Files.readAllBytes(path);
+        return new Byte[0];
+    }
+
+    @Override
+    public Byte[] getPdf(Long id) throws IllegalStateException, IOException {
+        Livre livre = livreRepository.findById(id).get();
+        String livrePhoto =livre.getPhoto();
+        File file = new File("src/main/resources/images/"+ livre.getIdLivre() +"/" +livrePhoto);
+        Path path = Paths.get(file.toURI());
+        Files.readAllBytes(path);
+        return new Byte[0];
+    }
 
 }

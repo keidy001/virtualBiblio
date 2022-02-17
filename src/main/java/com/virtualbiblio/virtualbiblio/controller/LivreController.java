@@ -1,10 +1,19 @@
 package com.virtualbiblio.virtualbiblio.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.virtualbiblio.virtualbiblio.model.File;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
+import com.virtualbiblio.virtualbiblio.model.Response;
 import com.virtualbiblio.virtualbiblio.service.LivreService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,11 +29,25 @@ public class LivreController {
     @Autowired
     LivreService livreService;
 
-    @PostMapping(value= "/ajouter", consumes = { MediaType. APPLICATION_JSON_VALUE ,MediaType. MULTIPART_FORM_DATA_VALUE })
-    public String ajouter(@RequestParam("file") @RequestBody Livre livre,MultipartFile file) throws  IllegalStateException, IOException  {
-        livreService.uplodFile(file);
-        return livreService.ajouter(livre);
+
+    @PostMapping("/ajouter")
+    @ResponseBody
+        public String ajouterLIvre(Livre livre,
+                                   @RequestParam("file") MultipartFile img,
+                                   @RequestParam("pdf") MultipartFile pdf)
+            throws IOException {
+        String fileNamePhoto = StringUtils.cleanPath(img.getOriginalFilename());
+        livre.setPhoto(fileNamePhoto);
+        String uploadDirPhoto = "src/main/resources/images/";
+        File.saveFile(uploadDirPhoto, fileNamePhoto, img);
+        String fileNamePdf = StringUtils.cleanPath(pdf.getOriginalFilename());
+        livre.setLivre(fileNamePdf);
+        String uploadDirPdf = "src/main/resources/livre/";
+        File.saveFile(uploadDirPdf, fileNamePdf, pdf);
+        this.livreService.ajouter(livre);
+        return "Appareil Ajouter avec sucess";
     }
+
     @GetMapping("/afficher/{id}")
     public Livre afficher(@PathVariable("id") Long id) {
         return livreService.afficher(id);
@@ -54,7 +77,16 @@ public class LivreController {
         return livreService.Format(format);
     }
     @PostMapping("file")
-    public void uploadFile(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+    public void uploadFile( Livre livre,  @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
             livreService.uplodFile(file);
     }
+
+    @GetMapping(value = "/photo/{photo}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+
+    byte[] getPhoto(@PathVariable("photo") Long id) throws IOException{
+        livreService.getPhoto(id);
+         return null;
+    };
+
+
 }
