@@ -49,7 +49,7 @@ public class LivreController {
     public Livre restore(@PathVariable("id") Long id) {
         return livreService.restore(id);
     }
-    @GetMapping("/livrebyformat/{format}")
+    @GetMapping("/ /{format}")
     public Collection<Livre> Format(@PathVariable("format") Format format) {
         return livreService.Format(format);
     }

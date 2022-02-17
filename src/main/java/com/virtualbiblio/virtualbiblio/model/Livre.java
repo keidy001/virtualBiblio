@@ -19,7 +19,6 @@ public class Livre implements Serializable {
     private String livre;
     private double prix;
     private String photo;
-    private String livre;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -34,11 +33,7 @@ public class Livre implements Serializable {
     public Livre() {
     }
 
-<<<<<<< HEAD
     public Livre(String titre, String auteur, String sommaire,String description, Format format, String domaine, double prix,String photo,String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
-=======
-    public Livre(String titre, String auteur, String sommaire, Format format, String domaine, String livre, double prix,String photo, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
->>>>>>> 9979702d0fb5c08b3c0102dbb1cffa84587303cf
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
@@ -56,13 +51,7 @@ public class Livre implements Serializable {
         this.livre = livre;
     }
 
-    public Long getIdLivre() {
-        return idLivre;
-    }
 
-    public void setIdLivre(Long idLivre) {
-        this.idLivre = idLivre;
-    }
 
     public String getTitre() {
         return titre;
@@ -167,7 +156,6 @@ public class Livre implements Serializable {
     public void setLivre(String livre) {
         this.livre = livre;
     }
-<<<<<<< HEAD
 
     public String getDescription() {
         return description;
@@ -176,6 +164,12 @@ public class Livre implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-=======
->>>>>>> 9979702d0fb5c08b3c0102dbb1cffa84587303cf
+
+    public Long getIdLivre() {
+        return idLivre;
+    }
+
+    public void setIdLivre(Long idLivre) {
+        this.idLivre = idLivre;
+    }
 }
