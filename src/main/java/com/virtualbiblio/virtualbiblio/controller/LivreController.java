@@ -32,20 +32,23 @@ public class LivreController {
 
     @PostMapping("/ajouter")
     @ResponseBody
-        public String ajouterLIvre(Livre livre,
+        public Livre ajouterLIvre(Livre livre,
                                    @RequestParam("file") MultipartFile img,
                                    @RequestParam("pdf") MultipartFile pdf)
             throws IOException {
+        //Methode for upload photo
         String fileNamePhoto = StringUtils.cleanPath(img.getOriginalFilename());
         livre.setPhoto(fileNamePhoto);
-        String uploadDirPhoto = "src/main/resources/images/";
+        String uploadDirPhoto = "src/main/resources/images/" ;
+        System.out.println(livre.getIdLivre());
         File.saveFile(uploadDirPhoto, fileNamePhoto, img);
+        //Methode for upload livre
         String fileNamePdf = StringUtils.cleanPath(pdf.getOriginalFilename());
         livre.setLivre(fileNamePdf);
         String uploadDirPdf = "src/main/resources/livre/";
+        //Methode for save data
         File.saveFile(uploadDirPdf, fileNamePdf, pdf);
-        this.livreService.ajouter(livre);
-        return "Appareil Ajouter avec sucess";
+       return  this.livreService.ajouter(livre);
     }
 
     @GetMapping("/afficher/{id}")

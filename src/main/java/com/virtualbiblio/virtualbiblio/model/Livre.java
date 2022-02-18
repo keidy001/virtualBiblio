@@ -19,7 +19,6 @@ public class Livre implements Serializable {
     private String livre;
     private double prix;
     private String photo;
-    private String photoName;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -38,7 +37,7 @@ public class Livre implements Serializable {
 
 
 
-    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix, String photoName, String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
@@ -51,7 +50,6 @@ public class Livre implements Serializable {
         this.utilisateur = utilisateur;
         this.librairy =librairy;
         this.delleted =delleted;
-        this.photoName =photoName;
         this.livre = livre;
         this.photo = photo;
     }
@@ -144,14 +142,6 @@ public class Livre implements Serializable {
 
     public void setLibrairy(Librairy librairy) {
         this.librairy = librairy;
-    }
-
-    public String getPhotoName() {
-        return photoName;
-    }
-
-    public void setPhotoName(String photoName) {
-        this.photoName = photoName;
     }
 
     public String getLivre() {
