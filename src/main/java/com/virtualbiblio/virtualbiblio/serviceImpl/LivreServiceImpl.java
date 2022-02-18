@@ -85,20 +85,28 @@ public class LivreServiceImpl implements LivreService {
     public byte[] getPhoto(Long id) throws IllegalStateException, IOException {
         Livre photo = livreRepository.findById(id).get();
         String livrePhoto =photo.getPhoto();
-        File file = new File("src/main/resources/images/"+ photo.getIdLivre() +"/" +livrePhoto);
+        File file = new File("src/main/resources/images/"+ photo.getIdLivre()+"/"+livrePhoto);
         Path path = Paths.get(file.toURI());
+<<<<<<< HEAD
         Files.readAllBytes(path);
         return  byte;
     }
 
     @Override
     public byte[] getPdf(Long id) throws IllegalStateException, IOException {
+=======
+
+        return Files.readAllBytes(path);
+    }
+
+    @Override
+    public byte[] getPdf(Long id) throws  IOException {
+>>>>>>> 9fe5f89f85ad91abe172f394a4168508a02cd8ac
         Livre livre = livreRepository.findById(id).get();
-        String livrePhoto =livre.getPhoto();
-        File file = new File("src/main/resources/images/"+ livre.getIdLivre() +"/" +livrePhoto);
+        String livrePhoto = livre.getPhoto();
+        File file = new File("src/main/resources/images"+ livre.getIdLivre() +"/" +livrePhoto);
         Path path = Paths.get(file.toURI());
-        Files.readAllBytes(path);
-        return new Byte[0];
+        return Files.readAllBytes(path);
     }
 
 }
