@@ -32,7 +32,7 @@ public class LivreController {
 
     @PostMapping("/ajouter")
     @ResponseBody
-        public String ajouterLIvre(Livre livre,
+        public livre ajouterLIvre(Livre livre,
                                    @RequestParam("file") MultipartFile img,
                                    @RequestParam("pdf") MultipartFile pdf)
             throws IOException {
@@ -44,8 +44,8 @@ public class LivreController {
         livre.setLivre(fileNamePdf);
         String uploadDirPdf = "src/main/resources/livre/";
         File.saveFile(uploadDirPdf, fileNamePdf, pdf);
-        this.livreService.ajouter(livre);
-        return "Appareil Ajouter avec sucess";
+
+        return  this.livreService.ajouter(livre);
     }
 
     @GetMapping("/afficher/{id}")
@@ -72,7 +72,7 @@ public class LivreController {
     public Livre restore(@PathVariable("id") Long id) {
         return livreService.restore(id);
     }
-    @GetMapping("/ /{format}")
+    @GetMapping("/ format/{format}")
     public Collection<Livre> Format(@PathVariable("format") Format format) {
         return livreService.Format(format);
     }

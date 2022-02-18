@@ -21,7 +21,7 @@ public interface LivreService {
     Livre restore(Long id);
     Collection<Livre> Format(Format format);
     void  uplodFile(MultipartFile file) throws IOException;
-    Byte[] getPhoto(Long id) throws IllegalStateException, IOException;
-    Byte[] getPdf(Long id) throws IllegalStateException, IOException;
+    byte[] getPhoto(Long id) throws IllegalStateException, IOException;
+    byte[] getPdf(Long id) throws IllegalStateException, IOException;
 
 }
