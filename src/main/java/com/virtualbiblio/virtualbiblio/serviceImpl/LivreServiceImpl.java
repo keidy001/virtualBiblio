@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.serviceImpl;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import com.virtualbiblio.virtualbiblio.repository.LivreRepository;
@@ -59,16 +60,21 @@ public class LivreServiceImpl implements LivreService {
 
     @Override
     public Livre disable(Long id) {
-        Livre disable = livreRepository.findById(id).get();
-        disable.setDelleted(true);
-        return null;
+        Livre delete = livreRepository.findById(id).get();
+        delete.setDeleted(true);
+        return livreRepository.save(delete);
     }
 
     @Override
     public Livre restore(Long id) {
         Livre restore = livreRepository.findById(id).get();
-        restore.setDelleted(false);
-        return null;
+        restore.setDeleted(false);
+        return livreRepository.save(restore);
+    }
+
+    @Override
+    public Collection<Livre> findByState(int state) {
+        return livreRepository.findByDeleted(state);
     }
 
     @Override
@@ -85,26 +91,19 @@ public class LivreServiceImpl implements LivreService {
     public byte[] getPhoto(Long id) throws IllegalStateException, IOException {
         Livre photo = livreRepository.findById(id).get();
         String livrePhoto =photo.getPhoto();
-        File file = new File("src/main/resources/images/"+ photo.getIdLivre()+"/"+livrePhoto);
+        File file = new File("src/main/resources/images/"+photo.getIdLivre()+"/"+livrePhoto);
         Path path = Paths.get(file.toURI());
-<<<<<<< HEAD
-        Files.readAllBytes(path);
-        return  byte;
+        return  Files.readAllBytes(path);
     }
 
-    @Override
-    public byte[] getPdf(Long id) throws IllegalStateException, IOException {
-=======
 
-        return Files.readAllBytes(path);
-    }
 
     @Override
     public byte[] getPdf(Long id) throws  IOException {
->>>>>>> 9fe5f89f85ad91abe172f394a4168508a02cd8ac
+
         Livre livre = livreRepository.findById(id).get();
-        String livrePhoto = livre.getPhoto();
-        File file = new File("src/main/resources/images"+ livre.getIdLivre() +"/" +livrePhoto);
+        String livreFile = livre.getLivre();
+        File file = new File("src/main/resources/images/"+livre.getIdLivre()+"/" +livreFile);
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }

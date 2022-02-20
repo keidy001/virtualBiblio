@@ -51,13 +51,13 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin disable(Long id) {
         Admin delete = adminRepository.findById(id).get();
-        delete.setDelleted(true);
+        delete.setDeleted(true);
         return adminRepository.save(delete);
     }
     @Override
     public Admin restore(Long id) {
         Admin delete = adminRepository.findById(id).get();
-        delete.setDelleted(false);
+        delete.setDeleted(false);
         return adminRepository.save(delete);
     }
 
@@ -70,7 +70,7 @@ public class AdminServiceImpl implements AdminService {
             return null;
         }
 
-        if(admin.get().isDelleted())
+        if(admin.get().isDeleted())
         {
             throw new IllegalStateException("Votre compte administrateur est désactivé !");
         }

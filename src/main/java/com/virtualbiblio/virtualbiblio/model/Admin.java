@@ -15,6 +15,9 @@ public class Admin implements Serializable {
     private int telephone;
     private String login;
     private String password;
+    private Role role;
+    @OneToMany(mappedBy = "admin")
+    private List<Category> category;
     private String photo;
     @OneToMany(mappedBy = "admin")
     private List<Livre> livre;
@@ -25,7 +28,7 @@ public class Admin implements Serializable {
 
 
 
-    public Admin(String nom, String prenom, String email, int telephone, String login, String password,String photo, List<Livre> livre,boolean delleted) {
+    public Admin(String nom, String prenom,Role role, String email, int telephone, String login, String password,String photo, List<Livre> livre,boolean delleted) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -35,6 +38,7 @@ public class Admin implements Serializable {
         this.livre = livre;
         this.delleted = delleted;
         this.photo = photo;
+        this.role =role;
 
     }
 
@@ -102,11 +106,11 @@ public class Admin implements Serializable {
         this.livre = livre;
     }
 
-    public boolean isDelleted() {
+    public boolean isDeleted() {
         return delleted;
     }
 
-    public void setDelleted(boolean delleted) {
+    public void setDeleted(boolean delleted) {
         this.delleted = delleted;
     }
 
@@ -116,5 +120,13 @@ public class Admin implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

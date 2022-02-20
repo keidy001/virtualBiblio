@@ -34,11 +34,11 @@ public class CategoryController {
     public Void deleteCategory(Long id) {
         return categoryService.deleteCategory(id);
     }
-    @GetMapping("/disable")
+    @PutMapping("/disable/{id}")
     public Category disable(@PathVariable Long id) {
         return categoryService.disable(id);
     }
-    @PutMapping("/restore")
+    @PutMapping("/restore/{id}")
     public Category restore(@PathVariable("id") Long id) {
         return categoryService.restore(id);
     }

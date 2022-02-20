@@ -32,18 +32,15 @@ public class LivreController {
 
     @PostMapping("/ajouter")
     @ResponseBody
-<<<<<<< HEAD
-        public livre ajouterLIvre(Livre livre,
-=======
         public Livre ajouterLIvre(Livre livre,
->>>>>>> 9fe5f89f85ad91abe172f394a4168508a02cd8ac
                                    @RequestParam("file") MultipartFile img,
                                    @RequestParam("pdf") MultipartFile pdf)
             throws IOException {
         //Methode for upload photo
         String fileNamePhoto = StringUtils.cleanPath(img.getOriginalFilename());
         livre.setPhoto(fileNamePhoto);
-        String uploadDirPhoto = "src/main/resources/images/" ;
+        livreService.ajouter(livre);
+        String uploadDirPhoto = "src/main/resources/images/"+livre.getIdLivre() ;
         System.out.println(livre.getIdLivre());
         File.saveFile(uploadDirPhoto, fileNamePhoto, img);
         //Methode for upload livre
@@ -52,12 +49,8 @@ public class LivreController {
         String uploadDirPdf = "src/main/resources/livre/";
         //Methode for save data
         File.saveFile(uploadDirPdf, fileNamePdf, pdf);
-<<<<<<< HEAD
-
-        return  this.livreService.ajouter(livre);
-=======
        return  this.livreService.ajouter(livre);
->>>>>>> 9fe5f89f85ad91abe172f394a4168508a02cd8ac
+
     }
 
     @GetMapping("/afficher/{id}")
@@ -96,9 +89,11 @@ public class LivreController {
     @GetMapping(value = "/photo/{photo}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 
     byte[] getPhoto(@PathVariable("photo") Long id) throws IOException{
-        livreService.getPhoto(id);
-         return null;
+
+         return livreService.getPhoto(id);
     };
-
-
+    @GetMapping("/byState{state}")
+    public Collection<Livre> findByState(@PathVariable("state") int state) {
+        return livreService.findByState(state);
+    }
 }

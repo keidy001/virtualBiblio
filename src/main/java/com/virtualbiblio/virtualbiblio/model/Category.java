@@ -18,19 +18,19 @@ public class Category implements Serializable {
     private List<Livre> livre;
     @ManyToOne
     private Admin admin;
-    private boolean delleted= false;
+    private boolean deleted= false;
 
     public Category() {
     }
 
 
 
-    public Category(String category, String description, List<Livre> livre, Admin admin,boolean delleted) {
+    public Category(String category, String description, List<Livre> livre, Admin admin,boolean deleted) {
         this.category = category;
         this.description = description;
         this.livre = livre;
         this.admin = admin;
-        this.delleted = delleted;
+        this.deleted = deleted;
 
     }
 
@@ -74,11 +74,11 @@ public class Category implements Serializable {
         this.admin = admin;
     }
 
-    public boolean isDelleted() {
-        return delleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setDelleted(boolean delleted) {
-        this.delleted = delleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

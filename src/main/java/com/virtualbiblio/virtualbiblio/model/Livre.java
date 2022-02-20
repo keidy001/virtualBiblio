@@ -28,7 +28,7 @@ public class Livre implements Serializable {
     private List<Utilisateur> utilisateur;
     @ManyToOne
     private Librairy librairy;
-    private boolean delleted= false;
+    private boolean deleted= false;
 
     public Livre() {
     }
@@ -37,7 +37,7 @@ public class Livre implements Serializable {
 
 
 
-    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean delleted) {
+    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean deleted) {
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
@@ -49,7 +49,7 @@ public class Livre implements Serializable {
         this.admin = admin;
         this.utilisateur = utilisateur;
         this.librairy =librairy;
-        this.delleted =delleted;
+        this.deleted =deleted;
         this.livre = livre;
         this.photo = photo;
     }
@@ -128,12 +128,12 @@ public class Livre implements Serializable {
         this.utilisateur = utilisateur;
     }
 
-    public boolean isDelleted() {
-        return delleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setDelleted(boolean delleted) {
-        this.delleted = delleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Librairy getLibrairy() {

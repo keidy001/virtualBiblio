@@ -19,6 +19,7 @@ public interface LivreService {
     Void delete(Long id);
     Livre disable(Long id);
     Livre restore(Long id);
+    Collection<Livre> findByState(int state);
     Collection<Livre> Format(Format format);
     void  uplodFile(MultipartFile file) throws IOException;
     byte[] getPhoto(Long id) throws IllegalStateException, IOException;
