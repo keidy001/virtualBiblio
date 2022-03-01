@@ -46,12 +46,14 @@ public class LivreController {
         //Methode for upload livre
         String fileNamePdf = StringUtils.cleanPath(pdf.getOriginalFilename());
         livre.setLivre(fileNamePdf);
-        String uploadDirPdf = "src/main/resources/livre/";
-        //Methode for save data
+        livreService.ajouter(livre);
+        String uploadDirPdf = "src/main/resources/livre/"+livre.getIdLivre();
         File.saveFile(uploadDirPdf, fileNamePdf, pdf);
-       return  this.livreService.ajouter(livre);
+        //Methode for save data
+        return  this.livreService.ajouter(livre);
 
     }
+
 
     @GetMapping("/afficher/{id}")
     public Livre afficher(@PathVariable("id") Long id) {
@@ -77,8 +79,8 @@ public class LivreController {
     public Livre restore(@PathVariable("id") Long id) {
         return livreService.restore(id);
     }
-    @GetMapping("/ format/{format}")
-    public Collection<Livre> Format(@PathVariable("format") Format format) {
+    @GetMapping("/livrebyformat/{format}")
+    public Collection<Livre> Format(@PathVariable("format")     Format format) {
         return livreService.Format(format);
     }
     @PostMapping("file")
@@ -92,8 +94,15 @@ public class LivreController {
 
          return livreService.getPhoto(id);
     };
+
+    @GetMapping(value = "/livre/{livre}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+
+    byte[] getPdf(@PathVariable("livre") Long id) throws IOException{
+
+        return livreService.getPdf(id);
+    };
     @GetMapping("/byState{state}")
-    public Collection<Livre> findByState(@PathVariable("state") int state) {
+    public Collection<Livre> findByState(@PathVariable("state") Boolean state) {
         return livreService.findByState(state);
     }
 }

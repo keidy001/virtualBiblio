@@ -1,0 +1,378 @@
+import { LivreserviceService } from './../../service/livreservice.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from 'src/app/service/category.service';
+
+@Component({
+  selector: 'app-add-livre',
+  templateUrl: './add-livre.component.html',
+  styleUrls: ['./add-livre.component.css']
+})
+export class AddLivreComponent implements OnInit {
+  formulaire: FormGroup;
+  allCategory : any;
+   imgfile :File|any ;
+   livrefile :File|any ;
+  submitted = false;
+  allFormat :any;
+  imagePath: any;
+  imgURL: any;
+  livrePath: any;
+  livreURL: any;
+  message: any;
+
+  constructor(
+    public livreService: LivreserviceService,
+    public categoryService : CategoryService,
+    public  route: ActivatedRoute,
+    public router : Router,
+    public toast: ToastrService,
+    public formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+
+    this.getCategory();
+    this.getFormat();
+    console.log('tes'+this.allCategory);
+    this.formulaire = this.formBuilder.group({
+
+      // photo: ['', Validators.required],
+      // livre: ['', Validators.required],
+      titre: ['', Validators.required],
+      auteur: ['', Validators.required],
+      prix: ['', Validators.required],
+     domaine: ['', Validators.required],
+      category: ['', Validators.required],
+      format: ['', Validators.required],
+      somaire: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+
+  },);
+  }
+
+  get f() { return this.formulaire.controls; }
+
+
+
+
+viewImg(files: any) { 
+  this.imgfile = files;
+  console.log(files[0].name);
+
+
+  if (files.length === 0)
+    return;
+
+  var mimeType = files[0].type;
+  if (mimeType.match(/image\/*/) == null) {
+    this.message = "Only images are supported.";
+    return;
+  }
+  var reader = new FileReader();
+  this.imagePath = files;
+  reader.readAsDataURL(files[0]); 
+  reader.onload = (_event) => { 
+    this.imgURL = reader.result; 
+  }
+}
+
+viewLivre(files: any) { 
+  this.livrefile = files;
+  console.log(files[0].name);
+
+
+  if (files.length === 0)
+    return;
+
+  var mimeType = files[0].type;
+  if (mimeType.match(/pdf\/*/) == null) {
+    this.message = "pdf is supported.";
+    return;
+  }
+  var reader = new FileReader();
+  this.imagePath = files;
+  reader.readAsDataURL(files[0]); 
+  reader.onload = (_event) => { 
+    this.imgURL = reader.result; 
+  }
+}
+// livreSelect(event){
+//   const livre = event.target.files[0];
+//   this.imgfile.get('livre').setValue(livre);
+//   console.log(this.imgfile);
+// }
+
+  submitForm(fg : NgForm){
+
+    var obj: { [idCategory: string]: any} = {};
+    obj['idCategory'] = fg.value.category;
+    fg.value.category = obj;
+    const data = fg.value;
+    const formData = new FormData();
+    formData.append('data',JSON.stringify(data) )
+    formData.append('photo',this.imgfile);
+    console.log("test de data"+formData.get('photo'));
+    this.livreService.addLivre(formData).subscribe((data)=>{
+      console.log(fg.value)
+    })
+    // formData.append('livre',this.livrefile);
+
+    this.submitted = true;
+    console.log(this.formulaire)
+    // stop here if form is invalid
+    if (this.formulaire.invalid) {
+
+        return;
+    }
+
+
+
+   console.log(JSON.stringify(fg.value));
+
+   this.livreService.addLivre(fg.value).subscribe(
+
+     (data)=>{
+      this.toast.success("Ajout effectuer avec succès ");
+      this.router.navigateByUrl("/listlivres");
+
+     }
+
+   )
+
+   if(fg.valid){
+    let id : any = {};
+    
+      this.livreService = {'nom': fg.value['nom'], 
+                      'quartier': fg.value['quartier'],
+                      'ville': fg.value['ville'],
+                      'adresse': fg.value['adresse'],
+                      'longitude': fg.value['longitude'],
+                      'latitude': fg.value['latitude'],
+                      'administrateur': this.adminConnect}
+         console.log(this.livreService);
+         this.livreService.addBoutique(this.livreService, this.photo[0]).subscribe((data: any)=> {
+
+          this.serve.detailBoutiquier(fg.value['boutiquier']).subscribe((boutiquier:any)=>{
+            console.log("---boutiquier---",boutiquier);
+            
+            let bout = {'nom': fg.value['nom'], 'quartier': fg.value['quartier'],
+                      'ville': fg.value['ville'],
+                      'adresse': fg.value['adresse'],
+                      'longitude': fg.value['longitude'],
+                      'latitude': fg.value['latitude'],
+                      'boutiquier': boutiquier,
+                      'photo': this.photo[0].name}
+                      console.log("---BBBBBBBBB---",bout);      
+        this.service.updateBoutique(data.id, bout).subscribe((dat: any)=>{
+                        
+                        this.showToastSuccess();
+                        this.router.navigate(["listBoutique"]);
+                        console.log("helle ++++++++++++", data);
+                       })
+          });
+
+           
+          
+      })
+    
+  }else{
+    this.showToastError();
+  }
+
+  }
+
+
+
+  showToast(){
+    this.toast.success("Ajout effectuer avec succes !!!");
+  }
+getCategory(){
+  this.categoryService.getAllCategory().subscribe((data)=>{
+    this.allCategory = data;
+    console.log("ok"+data);
+  })
+};
+getFormat(){
+  this.categoryService.getAllCategory().subscribe((data)=>{
+    this.allFormat = data;
+    console.log("ok"+data);
+  })
+};
+
+  logOut(){
+    localStorage.removeItem('isLogin');
+  this.router.navigateByUrl('/');
+}
+}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="wrapper">
+    <h3>Ajouter un Livre</h3>
+    <div class="row ">
+        <div class="col-lg-12">
+            <div class="form-panel" style="padding: 3%;">
+                    <form #AjoutForm="ngForm" (ngSubmit)="submitForm(AjoutForm)" autocomplete="off" class="form-horizontal form-material">
+
+                    <div class="form-group">
+
+                        <label class="control-label col-md-2">Image du livre</label>
+                        <div class="col-md-3">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail"
+                                    style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <span class="btn btn-theme02 btn-file">
+                                        <span class="fileupload-new"><i class="fa fa-paperclip"></i> Choisir une image</span>
+                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                                        <input type="file" value="" name="photo" ngModel  #photo="ngModel" (change)="viewImg(imgfile.files)" required
+                                            class="default" />
+                                    </span>
+                                    <a href="#" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload"
+                                        style="margin-left: 1%;"><i class="fa fa-trash-o"></i> Supprimer</a>
+                                </div>
+                            </div>
+                            <div [hidden]="photo.valid || photo.pristine" class="alert alert-danger">
+                                La photo est obligatoire
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group padding">
+                        <label class="control-label col-md-2">Contenue du livre</label>
+                        <div class="controls col-md-5">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <span class="btn btn-theme02 btn-file">
+                                    <span class="fileupload-new"><i class="fa fa-paperclip"></i> Choisir un fichier</span>
+                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                    <input type="file" class="default" value="" name="pdf" ngModel  #pdf="ngModel" (change)="viewLivre(livrefile.files)"  required />
+                                </span>
+                                <span class="fileupload-preview" style="margin-left:5px;"></span>
+                                <a href="" class="close fileupload-exists" data-dismiss="fileupload"
+                                    style="float: none; margin-left:5px;"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label class="control-label col-md-2"> Titre du livre</label>
+                            <div class="col-md-3 col-xs-11 ">
+                                <input type="text" placeholder="" class="form-control p-0 border-0"
+                                    name="titre" ngModel #titre="ngModel" required>
+                                <div [hidden]="titre.valid || titre.pristine" class="alert alert-danger">
+                                    Vouz devez ajouter un titre
+                                </div>
+                            </div>
+                        </div>
+                        <label class="control-label col-md-2">Auteur du livre</label>
+                        <div class="col-md-3 col-xs-11">
+                            <input type="text" placeholder="" class="form-control p-0 border-0"
+                            name="auteur" ngModel #auteur="ngModel" required>
+                        <div [hidden]="auteur.valid || auteur.pristine" class="alert alert-danger">
+                            Veillez preciser le livre
+                        </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Prix du livre</label>
+                        <div class="col-md-3 col-xs-11">
+                            <input type="number" placeholder="" class="form-control p-0 border-0"
+                            name="prix" ngModel #prix="ngModel" required>
+                        <div [hidden]="prix.valid || prix.pristine" class="alert alert-danger">
+                           Specifier le prix
+                        </div>
+                        </div>
+                        <div>
+                            <label class="control-label col-md-2">Domaine</label>
+                            <div class="col-md-3 col-xs-11">
+                                <input type="text" placeholder="" class="form-control p-0 border-0"
+                                    name="domaine" ngModel #domaine="ngModel" required>
+                                <div [hidden]="domaine.valid || domaine.pristine" class="alert alert-danger">
+                                    Vous devez ajouter un domaine
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Catégorie</label>
+                        <div class="col-md-3 col-xs-11">
+                            <select  type="text" placeholder="" class="form-control p-0 border-0"
+                            name="category" ngModel #category="ngModel" required>
+                                <option *ngFor="let category of allCategory" value="{{category.idCategory}}">
+                                    {{category.category}}</option>
+                                    <div [hidden]="domaine.valid || domaine.pristine" class="alert alert-danger">
+                                        Vous devez ajouter un domaine
+                                    </div>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="control-label col-md-2">Format</label>
+                            <div class="col-md-3 col-xs-11">
+                                <select type="text" placeholder="" class="form-control p-0 border-0"
+                                name="category" ngModel #category="ngModel" required>
+                                <option value="Ebook">Ebook</option>
+                                <option value="Audio">Audio Book</option>
+                                <option value="Audio">Document</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-md-5 col-xs-11">
+                            <label class="control-label col-md-5" style="margin-bottom: 2%; margin-left: -4%;">Somaire
+                                du livre</label>
+                            <textarea class="form-control form-control-inline input-medium " cols="10" rows="7"
+                                size="16" name="somaire" ngModel  #somaire="ngModel" >
+                            </textarea>
+
+                        </div>
+                        <div class="col-md-5 col-xs-11">
+                            <label class="control-label col-md-5" style="margin-bottom: 2%; margin-left: -4%;">Description
+                                du livre</label>
+                            <textarea class="form-control form-control-inline input-medium " cols="10" rows="7"
+                                size="16" name="description" ngModel  #description="ngModel" >
+                            </textarea>
+                         
+                        </div>
+                    </div>
+
+                    <button  type="submit" [disabled]="AjoutForm.form.invalid" class="btn btn-theme btn-file" >Enregistrer</button>
+                </form>
+            </div>
+            <!-- /form-panel -->
+        </div>
+        <!-- /col-lg-12 -->
+    </div>
+</section>
+<!-- /wrapper -->

@@ -73,7 +73,7 @@ public class LivreServiceImpl implements LivreService {
     }
 
     @Override
-    public Collection<Livre> findByState(int state) {
+    public Collection<Livre> findByState(Boolean state) {
         return livreRepository.findByDeleted(state);
     }
 
@@ -103,7 +103,7 @@ public class LivreServiceImpl implements LivreService {
 
         Livre livre = livreRepository.findById(id).get();
         String livreFile = livre.getLivre();
-        File file = new File("src/main/resources/images/"+livre.getIdLivre()+"/" +livreFile);
+        File file = new File("src/main/resources/livre/"+livre.getIdLivre()+"/" +livreFile);
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
     }

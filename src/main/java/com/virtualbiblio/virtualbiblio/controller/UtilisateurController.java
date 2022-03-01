@@ -20,7 +20,7 @@ public class UtilisateurController {
         return utilisateurService.ajoutUtilisateur(utilisateur);
     }
     @GetMapping("/afficher/{id}")
-    public Utilisateur afficheUtilisateur(Long id) {
+    public Utilisateur afficheUtilisateur(@PathVariable("id") Long id) {
         return utilisateurService.afficheUtilisateur(id);
     }
     @GetMapping("/lister")

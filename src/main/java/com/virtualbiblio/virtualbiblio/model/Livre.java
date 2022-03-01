@@ -19,6 +19,8 @@ public class Livre implements Serializable {
     private String livre;
     private double prix;
     private String photo;
+    private int note;
+    private int recommendation;
     @ManyToOne
     private Category category;
     @ManyToOne
@@ -37,7 +39,7 @@ public class Livre implements Serializable {
 
 
 
-    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean deleted) {
+    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean deleted, int note,int recommendation) {
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
@@ -52,6 +54,8 @@ public class Livre implements Serializable {
         this.deleted =deleted;
         this.livre = livre;
         this.photo = photo;
+        this.note =note;
+        this.recommendation = recommendation;
     }
 
 
@@ -174,6 +178,22 @@ public class Livre implements Serializable {
 
     public void setIdLivre(Long idLivre) {
         this.idLivre = idLivre;
+    }
+
+    public int getNote() {
+        return note;
+    }
+
+    public void setNote(int note) {
+        this.note = note;
+    }
+
+    public int getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(int recommendation) {
+        this.recommendation = recommendation;
     }
 }
 

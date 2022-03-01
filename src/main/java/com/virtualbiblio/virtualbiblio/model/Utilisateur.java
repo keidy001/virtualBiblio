@@ -129,4 +129,5 @@ public class Utilisateur implements Serializable {
     public void setDelleted(boolean delleted) {
         this.delleted = delleted;
     }
+
 }
