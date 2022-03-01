@@ -69,10 +69,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur login(String login, String password) {
         Optional<Utilisateur> utilisateur = utilisateurRepository.findByLoginAndPassword(login,password);
 
-        if(utilisateur.isEmpty())
-        {
-            return null;
-        }
+//        if(utilisateur.isEmpty())
+//        {
+//            return null;
+//        }
 
         if(utilisateur.get().isDelleted())
         {

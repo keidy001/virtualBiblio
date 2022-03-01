@@ -65,10 +65,10 @@ public class AdminServiceImpl implements AdminService {
     public Admin login(String login, String password) {
          Optional<Admin> admin = adminRepository.findByLoginAndPassword(login,password);
 
-        if(admin.isEmpty())
-        {
-            return null;
-        }
+//        if(admin.isEmpty())
+//        {
+//            return null;
+//        }
 
         if(admin.get().isDeleted())
         {
