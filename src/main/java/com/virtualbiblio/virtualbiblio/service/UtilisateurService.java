@@ -1,6 +1,7 @@
 package com.virtualbiblio.virtualbiblio.service;
 
 import com.virtualbiblio.virtualbiblio.model.Admin;
+import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Utilisateur;
 
 import org.springframework.stereotype.Service;
@@ -18,5 +19,6 @@ public interface UtilisateurService {
     Utilisateur disable(Long id);
     Utilisateur restore(Long id);
     Utilisateur login(String login, String password);
+    List<Utilisateur> listByDeleted(Boolean deleted);
 
 }

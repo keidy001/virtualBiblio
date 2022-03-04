@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.service;
 
+import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Librairy;
 import org.apache.catalina.LifecycleState;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,7 @@ public interface LibrairyService {
     Void delete(Long id);
     Librairy disable(Long id);
     Librairy restore(Long id);
+    List<Librairy> listByDeleted(Boolean deleted);
+
 
 }

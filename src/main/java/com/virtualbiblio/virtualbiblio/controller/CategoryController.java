@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.controller;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,10 @@ public class CategoryController {
     @PutMapping("/restore/{id}")
     public Category restore(@PathVariable("id") Long id) {
         return categoryService.restore(id);
+    }
+
+    @GetMapping("/byStatus/{status}")
+    public List<Category> listByDeleted(@PathVariable("status") Boolean deleted) {
+        return categoryService.listByDeleted(deleted);
     }
 }

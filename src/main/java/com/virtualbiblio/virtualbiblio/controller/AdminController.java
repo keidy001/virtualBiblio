@@ -25,7 +25,7 @@ public class AdminController {
     }
     @GetMapping("/lister")
     public List<Admin> afficheAdmin() {
-        return adminService.afficheAdmin();
+        return adminService.listAdmin();
     }
     @PutMapping("/modifier/{id}")
     public Admin modifierAdmin(@RequestBody Admin admin, @PathVariable("id")Long id) {
@@ -36,15 +36,19 @@ public class AdminController {
         return adminService.deleteAdmin(id);
     }
     @PutMapping("/disable/{id}")
-    public Admin disable(@PathVariable Long id) {
+    public Admin disable(@PathVariable("id") Long id) {
         return adminService.disable(id);
     }
-    @PutMapping("/restore{id}")
-    public Admin restore(@PathVariable Long id) {
+    @PutMapping("/restore/{id}")
+    public Admin restore(@PathVariable("id") Long id) {
         return adminService.restore(id);
     }
     @GetMapping("/login")
     public Admin login(@RequestParam String login, @RequestParam String password) {
         return adminService.login(login, password);
+    }
+    @GetMapping("/byStatus/{status}")
+    public List<Admin> listByDeleted(@PathVariable("status") Boolean deleted) {
+        return adminService.listByDeleted(deleted);
     }
 }

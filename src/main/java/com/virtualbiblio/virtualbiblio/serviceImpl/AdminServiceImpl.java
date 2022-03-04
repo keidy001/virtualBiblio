@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Admin> afficheAdmin() {
+    public List<Admin> listAdmin() {
         return adminRepository.findAll();
     }
 
@@ -65,10 +65,9 @@ public class AdminServiceImpl implements AdminService {
     public Admin login(String login, String password) {
          Optional<Admin> admin = adminRepository.findByLoginAndPassword(login,password);
 
-//        if(admin.isEmpty())
-//        {
-//            return null;
-//        }
+        if(admin.isEmpty())
+        {
+        }
 
         if(admin.get().isDeleted())
         {
@@ -76,5 +75,10 @@ public class AdminServiceImpl implements AdminService {
         }
 
         return admin.get();
+    }
+
+    @Override
+    public List<Admin> listByDeleted(Boolean deleted) {
+        return adminRepository.findByDeleted(deleted);
     }
 }

@@ -18,17 +18,12 @@ public class Librairy implements Serializable {
     private List<Livre> livre;
     @ManyToOne
     private Admin admin;
-
-    public Librairy() {
-        this.delleted = delleted;
-    }
-
-    private boolean delleted= false;
+    private boolean deleted= false;
 
 
 
 
-    public Librairy(String nom, String adresse, String telephone, String email,String photo, List<Livre> livre, Admin admin,boolean delleted) {
+    public Librairy(String nom, String adresse, String telephone, String email,String photo, List<Livre> livre, Admin admin,boolean deleted) {
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
@@ -36,7 +31,7 @@ public class Librairy implements Serializable {
         this.photo = photo;
         this.livre = livre;
         this.admin = admin;
-
+        this.deleted = deleted;
     }
 
     public Long getIdLibrairy() {
@@ -95,12 +90,12 @@ public class Librairy implements Serializable {
         this.admin = admin;
     }
 
-    public boolean isDelleted() {
-        return delleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setDelleted(boolean delleted) {
-        this.delleted = delleted;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public String getPhoto() {

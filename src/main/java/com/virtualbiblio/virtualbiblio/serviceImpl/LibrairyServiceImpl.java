@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.serviceImpl;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Librairy;
 import com.virtualbiblio.virtualbiblio.repository.AdminRepository;
 import com.virtualbiblio.virtualbiblio.repository.LibrairyRepository;
@@ -51,14 +52,19 @@ public class LibrairyServiceImpl implements LibrairyService {
     @Override
     public Librairy disable(Long id) {
         Librairy disable =librairyRepository.findById(id).get();
-        disable.setDelleted(true);
+        disable.setDeleted(true);
         return  librairyRepository.save(disable);
     }
 
     @Override
     public Librairy restore(Long id) {
         Librairy restore = librairyRepository.findById(id).get();
-        restore.setDelleted(false);
+        restore.setDeleted(false);
         return librairyRepository.save(restore);
     }
+    @Override
+    public List<Librairy> listByDeleted(Boolean deleted) {
+        return librairyRepository.findByDeleted(deleted);
+    }
+
 }

@@ -10,11 +10,11 @@ import java.util.List;
 public interface AdminService {
      String ajoutAdmin(Admin admin);
      Admin afficheAdminById(Long id);
-     List<Admin> afficheAdmin();
+     List<Admin> listAdmin();
      Admin modifierAdmin(Admin admin, Long id);
      Void deleteAdmin(Long id);
      Admin disable(Long id);
      Admin restore(Long id);
      Admin login(String login, String password);
-
+     List<Admin> listByDeleted(Boolean deleted);
 }

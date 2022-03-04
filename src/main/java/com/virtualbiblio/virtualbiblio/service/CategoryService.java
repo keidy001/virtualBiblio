@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.service;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Category;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +15,6 @@ public interface CategoryService {
     Void deleteCategory(Long id);
     Category disable(Long id);
     Category restore(Long id);
+    List<Category> listByDeleted(Boolean deleted);
+
 }

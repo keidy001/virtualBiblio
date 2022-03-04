@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.serviceImpl;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.repository.CategoryRepository;
 import com.virtualbiblio.virtualbiblio.service.CategoryService;
@@ -55,4 +56,9 @@ public class CategoryServiceImpl implements CategoryService {
         restore.setDeleted(false);
         return categoryRepository.save(restore);
     }
+    @Override
+    public List<Category> listByDeleted(Boolean deleted) {
+        return categoryRepository.findByDeleted(deleted);
+    }
+
 }

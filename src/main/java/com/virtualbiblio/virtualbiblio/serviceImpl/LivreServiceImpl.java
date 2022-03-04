@@ -103,9 +103,13 @@ public class LivreServiceImpl implements LivreService {
 
         Livre livre = livreRepository.findById(id).get();
         String livreFile = livre.getLivre();
-        File file = new File("src/main/resources/livre/"+livre.getIdLivre()+"/" +livreFile);
+        File file = new File("src/main/resources/livre/"+livre.getIdLivre()+"/"+livreFile);
         Path path = Paths.get(file.toURI());
         return Files.readAllBytes(path);
+    }
+    @Override
+    public List<Livre> listByDeleted(Boolean deleted) {
+        return livreRepository.findByDeleted(deleted);
     }
 
 }

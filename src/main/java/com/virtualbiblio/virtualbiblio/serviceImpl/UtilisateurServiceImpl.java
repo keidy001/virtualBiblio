@@ -54,14 +54,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Override
     public Utilisateur disable(Long id) {
         Utilisateur disable = utilisateurRepository.findById(id).get();
-        disable.setDelleted(true);
+        disable.setDeleted(true);
         return null;
     }
 
     @Override
     public Utilisateur restore(Long id) {
         Utilisateur restore = utilisateurRepository.findById(id).get();
-        restore.setDelleted(false);
+        restore.setDeleted(false);
         return null;
     }
 
@@ -69,16 +69,21 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur login(String login, String password) {
         Optional<Utilisateur> utilisateur = utilisateurRepository.findByLoginAndPassword(login,password);
 
-//        if(utilisateur.isEmpty())
-//        {
-//            return null;
-//        }
+       if(utilisateur.isEmpty())
+       {            return null;
+        }
 
-        if(utilisateur.get().isDelleted())
+        if(utilisateur.get().isDeleted())
         {
             throw new IllegalStateException("Votre compte administrateur est désactivé !");
         }
 
         return utilisateur.get();
     }
+
+    @Override
+    public List<Utilisateur> listByDeleted(Boolean deleted) {
+        return utilisateurRepository.findByDeleted(deleted);
+    }
+
 }

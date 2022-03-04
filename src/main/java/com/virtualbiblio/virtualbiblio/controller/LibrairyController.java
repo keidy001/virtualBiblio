@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.controller;
 
+import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Librairy;
 import com.virtualbiblio.virtualbiblio.repository.LibrairyRepository;
 import com.virtualbiblio.virtualbiblio.service.LibrairyService;
@@ -11,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/librairy")
-public class LIbrairyController {
+public class LibrairyController {
     @Autowired
     LibrairyService librairyService;
     @PostMapping("/ajouter")
@@ -41,5 +42,9 @@ public class LIbrairyController {
     @PutMapping("/restore{id}")
     public Librairy restore(@PathVariable("id") Long id) {
         return librairyService.restore(id);
+    }
+    @GetMapping("/byStatus/{status}")
+    public List<Librairy> listByDeleted(@PathVariable("status") Boolean deleted) {
+        return librairyService.listByDeleted(deleted);
     }
 }

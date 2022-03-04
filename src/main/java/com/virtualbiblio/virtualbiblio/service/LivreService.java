@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.service;
 
+import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,6 @@ public interface LivreService {
     void  uplodFile(MultipartFile file) throws IOException;
     byte[] getPhoto(Long id) throws IllegalStateException, IOException;
     byte[] getPdf(Long id) throws IllegalStateException, IOException;
+    List<Livre> listByDeleted(Boolean deleted);
 
 }

@@ -1,10 +1,7 @@
 package com.virtualbiblio.virtualbiblio.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.virtualbiblio.virtualbiblio.model.File;
-import com.virtualbiblio.virtualbiblio.model.Format;
-import com.virtualbiblio.virtualbiblio.model.Livre;
-import com.virtualbiblio.virtualbiblio.model.Response;
+import com.virtualbiblio.virtualbiblio.model.*;
 import com.virtualbiblio.virtualbiblio.service.LivreService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -101,8 +98,9 @@ public class LivreController {
 
         return livreService.getPdf(id);
     };
-    @GetMapping("/byState{state}")
-    public Collection<Livre> findByState(@PathVariable("state") Boolean state) {
-        return livreService.findByState(state);
+
+    @GetMapping("/byStatus/{status}")
+    public List<Livre> listByDeleted(@PathVariable("status") Boolean deleted) {
+        return livreService.listByDeleted(deleted);
     }
 }

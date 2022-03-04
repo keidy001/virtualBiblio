@@ -1,5 +1,6 @@
 package com.virtualbiblio.virtualbiblio.repository;
 
+import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,5 @@ public interface LivreRepository extends JpaRepository<Livre, Long> {
     //(value = "SELECT types FROM Livre types WHERE types.format=:types ")
     //Optional<Livre> findByFormat(@Param("types") String types);
     Collection<Livre> findByFormat(Format format);
-    Collection<Livre> findByDeleted(Boolean state);
+    List<Livre> findByDeleted(Boolean deleted);
 }
