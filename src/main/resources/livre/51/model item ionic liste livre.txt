@@ -1,0 +1,28 @@
+
+
+
+
+<!-- home.page.html -->
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Livre {{format}} </ion-title>
+    <ion-buttons slot="end" style="margin-right:5%;">
+      <ion-icon name="search" ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+
+<ion-content [fullscreen]="true" scrollbar-y-none style="background-color: white;">
+  
+
+  <ion-list-header style="position: fixed;">
+    <ion-label>{{format}}</ion-label>
+  </ion-list-header>
+  
+  <ion-item detail *ngFor="let livre of listLivre"  style="padding: 2%" routerLink="/detail-livre/{{livre.idLivre}}"> 
+    <img src="{{photo}}{{livre.idLivre}}" style="width: 30%;padding: 2%;">
+    <ion-label style="margin-left: 3%;"> {{livre.titre}}<br/> <span style="font-size: small;">Format : {{livre.format}} <br>Durée : {{livre.format}}</span> </ion-label>
+  </ion-item>
+  
+</ion-content>

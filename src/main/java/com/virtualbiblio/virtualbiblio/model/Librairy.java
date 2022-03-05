@@ -20,10 +20,10 @@ public class Librairy implements Serializable {
     private Admin admin;
     private boolean deleted= false;
 
+    public Librairy() {
+    }
 
-
-
-    public Librairy(String nom, String adresse, String telephone, String email,String photo, List<Livre> livre, Admin admin,boolean deleted) {
+    public Librairy(String nom, String adresse, String telephone, String email, String photo, List<Livre> livre, Admin admin, boolean deleted) {
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
