@@ -44,8 +44,8 @@ public class CategoryController {
         return categoryService.restore(id);
     }
 
-    @GetMapping("/byStatus/{status}")
-    public List<Category> listByDeleted(@PathVariable("status") Boolean deleted) {
+    @GetMapping("/byStatus/{state}")
+    public List<Category> listByDeleted(@PathVariable("state") Boolean deleted) {
         return categoryService.listByDeleted(deleted);
     }
 }

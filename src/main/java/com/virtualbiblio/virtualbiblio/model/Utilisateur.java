@@ -21,6 +21,9 @@ public class Utilisateur implements Serializable {
     @JsonIgnore
     @ManyToMany(mappedBy = "utilisateur",cascade = CascadeType.ALL)
     private List<Livre> livre;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "utilisateurs",cascade = CascadeType.ALL)
+    private List<Documents> documents;
     @ManyToOne
     Admin admin;
     private boolean deleted= false;

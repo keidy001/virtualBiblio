@@ -16,6 +16,9 @@ public class Category implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Livre> livre;
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
+    private List<Documents> documents;
     @ManyToOne
     private Admin admin;
     private boolean deleted= false;

@@ -15,7 +15,6 @@ public class Livre implements Serializable {
     private String description;
     @Enumerated(EnumType.STRING)
     private Format format;
-    private String domaine;
     private String livre;
     private double prix;
     private String photo;
@@ -37,15 +36,12 @@ public class Livre implements Serializable {
 
 
 
-
-
-    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo, String domaine, double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean deleted, int note,int recommendation) {
+    public Livre(String titre, String auteur, String sommaire, String description, Format format,String photo,  double prix,  String livre, Category category, Admin admin, List<Utilisateur> utilisateur, Librairy librairy, boolean deleted, int note,int recommendation) {
         this.titre = titre;
         this.auteur = auteur;
         this.sommaire = sommaire;
         this.description = description;
         this.format = format;
-        this.domaine = domaine;
         this.prix = prix;
         this.category = category;
         this.admin = admin;
@@ -90,14 +86,6 @@ public class Livre implements Serializable {
 
     public void setFormat(Format format) {
         this.format = format;
-    }
-
-    public String getDomaine() {
-        return domaine;
-    }
-
-    public void setDomaine(String domaine) {
-        this.domaine = domaine;
     }
 
     public double getPrix() {

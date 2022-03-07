@@ -43,8 +43,8 @@ public class LibrairyController {
     public Librairy restore(@PathVariable("id") Long id) {
         return librairyService.restore(id);
     }
-    @GetMapping("/byStatus/{status}")
-    public List<Librairy> listByDeleted(@PathVariable("status") Boolean deleted) {
+    @GetMapping("/byStatus/{state}")
+    public List<Librairy> listByDeleted(@PathVariable("state") Boolean deleted) {
         return librairyService.listByDeleted(deleted);
     }
 }

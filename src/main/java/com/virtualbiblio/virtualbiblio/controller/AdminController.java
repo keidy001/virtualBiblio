@@ -47,8 +47,8 @@ public class AdminController {
     public Admin login(@RequestParam String login, @RequestParam String password) {
         return adminService.login(login, password);
     }
-    @GetMapping("/byStatus/{status}")
-    public List<Admin> listByDeleted(@PathVariable("status") Boolean deleted) {
+    @GetMapping("/byStatus/{state}")
+    public List<Admin> listByDeleted(@PathVariable("state") Boolean deleted) {
         return adminService.listByDeleted(deleted);
     }
 }

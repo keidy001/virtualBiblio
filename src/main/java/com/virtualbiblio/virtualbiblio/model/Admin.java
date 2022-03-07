@@ -21,6 +21,8 @@ public class Admin implements Serializable {
     private String photo;
     @OneToMany(mappedBy = "admin")
     private List<Livre> livre;
+    @OneToMany(mappedBy = "admin")
+    private List<Documents> documents;
     private boolean deleted= false;
 
     public Admin() {

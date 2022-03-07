@@ -92,15 +92,15 @@ public class LivreController {
          return livreService.getPhoto(id);
     };
 
-    @GetMapping(value = "/livre/{livre}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE, MediaType.APPLICATION_PDF_VALUE})
 
     byte[] getPdf(@PathVariable("livre") Long id) throws IOException{
 
         return livreService.getPdf(id);
     };
 
-    @GetMapping("/byStatus/{status}")
-    public List<Livre> listByDeleted(@PathVariable("status") Boolean deleted) {
+    @GetMapping("/byStatus/{state}")
+    public List<Livre> listByDeleted(@PathVariable("state") Boolean deleted) {
         return livreService.listByDeleted(deleted);
     }
 }

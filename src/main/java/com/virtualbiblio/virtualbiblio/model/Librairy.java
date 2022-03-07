@@ -1,5 +1,7 @@
 package com.virtualbiblio.virtualbiblio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Librairy implements Serializable {
     private String telephone;
     private String email;
     private String photo;
+    @JsonIgnore
     @OneToMany(mappedBy = "librairy")
     private List<Livre> livre;
     @ManyToOne

@@ -47,8 +47,8 @@ public class UtilisateurController {
     public Utilisateur login(@RequestParam String login, @RequestParam String password) {
         return utilisateurService.login(login, password);
     }
-@GetMapping("byStatus/{status}")
-    public List<Utilisateur> listByDeleted(@PathVariable("status") Boolean deleted) {
+@GetMapping("byStatus/{state}")
+    public List<Utilisateur> listByDeleted(@PathVariable("state") Boolean deleted) {
         return utilisateurService.listByDeleted(deleted);
     }
 }

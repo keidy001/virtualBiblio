@@ -20,7 +20,7 @@ public class File {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioe) {
-            throw new IOException("Impossible d'enregistrer le fichier image:" + fileName, ioe);
+            throw new IOException("Impossible d'enregistrer le fichier :" + fileName, ioe);
         }
     }
 }

@@ -45,10 +45,11 @@ public class LivreServiceImpl implements LivreService {
         updateLivre.setTitre(updateLivre.getTitre());
         updateLivre.setAuteur(updateLivre.getAuteur());
         updateLivre.setCategory(updateLivre.getCategory());
-        updateLivre.setDomaine(updateLivre.getDomaine());
+      //  updateLivre.setDomaine(updateLivre.getDomaine());
         updateLivre.setFormat(updateLivre.getFormat());
         updateLivre.setSommaire(updateLivre.getSommaire());
         updateLivre.setPrix(updateLivre.getPrix());
+        updateLivre.setLibrairy(updateLivre.getLibrairy());
         return livreRepository.save(livre);
     }
 
