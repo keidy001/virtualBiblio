@@ -38,7 +38,7 @@ public class LivreController {
         livre.setPhoto(fileNamePhoto);
         livreService.ajouter(livre);
         String uploadDirPhoto = "src/main/resources/images/"+livre.getIdLivre() ;
-        System.out.println(livre.getIdLivre());
+
         File.saveFile(uploadDirPhoto, fileNamePhoto, img);
         //Methode for upload livre
         String fileNamePdf = StringUtils.cleanPath(pdf.getOriginalFilename());
@@ -92,7 +92,7 @@ public class LivreController {
          return livreService.getPhoto(id);
     };
 
-    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE, MediaType.APPLICATION_PDF_VALUE})
+    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE , MediaType.APPLICATION_PDF_VALUE})
 
     byte[] getPdf(@PathVariable("livre") Long id) throws IOException{
 

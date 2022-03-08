@@ -2,7 +2,7 @@ package com.virtualbiblio.virtualbiblio.model;
 
 public enum Format {
     Ebook,
-    Audio,
-    Articles,
-    Memoires
+    AudioBook,
+    Article,
+    Memoire
 }
