@@ -83,7 +83,12 @@ public class LivreServiceImpl implements LivreService {
         return livreRepository.findByFormat(format);
     }
 
-@PostMapping
+    @Override
+    public List<Livre> findByFormatAndDeleted(Format format, Boolean state) {
+        return livreRepository.findByFormatAndDeleted(format,state);
+    }
+
+    @PostMapping
  public void uplodFile(MultipartFile file) throws IllegalStateException, IOException {
   file.transferTo(new File("C:\\Users\\Ghost\\Downloads\\"+file.getOriginalFilename()));
  }

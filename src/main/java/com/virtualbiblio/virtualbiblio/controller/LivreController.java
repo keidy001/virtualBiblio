@@ -92,15 +92,27 @@ public class LivreController {
          return livreService.getPhoto(id);
     };
 
-    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE , MediaType.APPLICATION_PDF_VALUE})
+    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE})
 
     byte[] getPdf(@PathVariable("livre") Long id) throws IOException{
 
         return livreService.getPdf(id);
     };
 
+    @GetMapping(value = "/audio/{audio}", produces = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+
+    byte[] audio(@PathVariable("audio") Long id) throws IOException{
+
+        return livreService.getPdf(id);
+    };
+
+
     @GetMapping("/byStatus/{state}")
     public List<Livre> listByDeleted(@PathVariable("state") Boolean deleted) {
         return livreService.listByDeleted(deleted);
+    }
+    @GetMapping("/formatNotDeleleted/{format}/{state}")
+    public List<Livre> findByFormatAndDeleted(@PathVariable("format") Format format,@PathVariable("state") Boolean state) {
+        return livreService.findByFormatAndDeleted(format, state);
     }
 }
