@@ -92,7 +92,7 @@ public class LivreController {
          return livreService.getPhoto(id);
     };
 
-    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE , MediaType.APPLICATION_PDF_VALUE})
+    @GetMapping(value = "/livre/{livre}", produces = {MediaType.APPLICATION_PDF_VALUE , MediaType.APPLICATION_FORM_URLENCODED_VALUE})
 
     byte[] getPdf(@PathVariable("livre") Long id) throws IOException{
 
