@@ -16,4 +16,5 @@ public interface LivreRepository extends JpaRepository<Livre, Long> {
     //Optional<Livre> findByFormat(@Param("types") String types);
     Collection<Livre> findByFormat(Format format);
     List<Livre> findByDeleted(Boolean deleted);
+    List<Livre> findByFormatAndDeleted(Format format,Boolean deleted);
 }

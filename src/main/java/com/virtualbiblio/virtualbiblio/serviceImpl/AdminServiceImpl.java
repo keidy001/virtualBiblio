@@ -36,6 +36,7 @@ public class AdminServiceImpl implements AdminService {
         updateAdmin.setPrenom(admin.getPrenom());
         updateAdmin.setEmail(admin.getEmail());
         updateAdmin.setTelephone(admin.getTelephone());
+        updateAdmin.setRole(admin.getRole());
         updateAdmin.setLogin(admin.getLogin());
         updateAdmin.setPassword(admin.getPassword());
         return adminRepository.save(updateAdmin);
@@ -67,6 +68,7 @@ public class AdminServiceImpl implements AdminService {
 
         if(admin.isEmpty())
         {
+            return null;
         }
 
         if(admin.get().isDeleted())
