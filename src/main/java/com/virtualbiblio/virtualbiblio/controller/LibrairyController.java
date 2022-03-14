@@ -47,4 +47,6 @@ public class LibrairyController {
     public List<Librairy> listByDeleted(@PathVariable("state") Boolean deleted) {
         return librairyService.listByDeleted(deleted);
     }
+
+
 }

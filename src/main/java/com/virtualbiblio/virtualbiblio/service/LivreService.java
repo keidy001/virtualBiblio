@@ -2,6 +2,7 @@ package com.virtualbiblio.virtualbiblio.service;
 
 import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Format;
+import com.virtualbiblio.virtualbiblio.model.Librairy;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,5 +28,6 @@ public interface LivreService {
     byte[] getPhoto(Long id) throws IllegalStateException, IOException;
     byte[] getPdf(Long id) throws IllegalStateException, IOException;
     List<Livre> listByDeleted(Boolean deleted);
+    List<Livre> livreByLibrairy(Librairy librairy);
 
 }

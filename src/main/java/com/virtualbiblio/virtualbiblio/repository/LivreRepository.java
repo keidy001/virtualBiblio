@@ -2,6 +2,7 @@ package com.virtualbiblio.virtualbiblio.repository;
 
 import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Format;
+import com.virtualbiblio.virtualbiblio.model.Librairy;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,5 @@ public interface LivreRepository extends JpaRepository<Livre, Long> {
     Collection<Livre> findByFormat(Format format);
     List<Livre> findByDeleted(Boolean deleted);
     List<Livre> findByFormatAndDeleted(Format format,Boolean deleted);
+    List<Livre> findByLibrairy(Librairy librairy);
 }
