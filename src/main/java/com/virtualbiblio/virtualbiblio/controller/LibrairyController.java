@@ -64,10 +64,15 @@ public class LibrairyController {
     public List<Librairy> listByDeleted(@PathVariable("state") Boolean deleted) {
         return librairyService.listByDeleted(deleted);
     }
+<<<<<<< HEAD
     @GetMapping(value = "/photo/{photo}", produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
 
     byte[] getPhoto(@PathVariable("photo") Long id) throws IOException{
 
         return librairyService.getPhoto(id);
     };
+=======
+
+
+>>>>>>> ce29476a3e436328119caa71ac87f36c2e172bb5
 }

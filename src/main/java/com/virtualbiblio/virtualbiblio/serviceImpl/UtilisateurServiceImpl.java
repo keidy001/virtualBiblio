@@ -3,6 +3,7 @@ package com.virtualbiblio.virtualbiblio.serviceImpl;
 import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Utilisateur;
 import com.virtualbiblio.virtualbiblio.repository.UtilisateurRepository;
+import com.virtualbiblio.virtualbiblio.service.MailSenderService;
 import com.virtualbiblio.virtualbiblio.service.UtilisateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,18 @@ import java.util.Optional;
 public class UtilisateurServiceImpl implements UtilisateurService {
     @Autowired
     UtilisateurRepository utilisateurRepository;
+    @Autowired
+    MailSenderService mailSenderService;
     @Override
     public String ajoutUtilisateur(Utilisateur utilisateur) {
+        mailSenderService.sendEmail(
+                utilisateur.getEmail(),
+                "Votre compte a été créer avec succès ",
+                "Création de compte sur Vbiblio http://localhost:8080/api/utilisateur"
+
+        );
          utilisateurRepository.save(utilisateur);
+
          return "success";
     }
 

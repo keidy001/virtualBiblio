@@ -3,6 +3,7 @@ package com.virtualbiblio.virtualbiblio.serviceImpl;
 import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Format;
+import com.virtualbiblio.virtualbiblio.model.Librairy;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import com.virtualbiblio.virtualbiblio.repository.LivreRepository;
 import com.virtualbiblio.virtualbiblio.service.LivreService;
@@ -120,8 +121,13 @@ public class LivreServiceImpl implements LivreService {
     }
 
     @Override
+<<<<<<< HEAD
     public List<Livre> listByFormatAndCategoryAndDeleted(Format format, Category category, Boolean deleted) {
         return livreRepository.findByFormatAndCategoryAndDeleted(format, category,deleted);
+=======
+    public List<Livre> livreByLibrairy(Librairy librairy) {
+        return livreRepository.findByLibrairy(librairy);
+>>>>>>> ce29476a3e436328119caa71ac87f36c2e172bb5
     }
 
 }
