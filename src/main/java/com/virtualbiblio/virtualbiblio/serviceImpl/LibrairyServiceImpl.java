@@ -2,12 +2,18 @@ package com.virtualbiblio.virtualbiblio.serviceImpl;
 
 import com.virtualbiblio.virtualbiblio.model.Admin;
 import com.virtualbiblio.virtualbiblio.model.Librairy;
+import com.virtualbiblio.virtualbiblio.model.Livre;
 import com.virtualbiblio.virtualbiblio.repository.AdminRepository;
 import com.virtualbiblio.virtualbiblio.repository.LibrairyRepository;
 import com.virtualbiblio.virtualbiblio.service.LibrairyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 @Service
 public class LibrairyServiceImpl implements LibrairyService {
@@ -16,9 +22,9 @@ public class LibrairyServiceImpl implements LibrairyService {
     @Autowired
     AdminRepository adminRepository;
     @Override
-    public String ajoutLibbrairy(Librairy librairy) {
-        librairyRepository.save(librairy);
-        return "success";
+    public Librairy ajoutLibbrairy(Librairy librairy) {
+        return librairyRepository.save(librairy);
+
     }
 
     @Override
@@ -35,11 +41,12 @@ public class LibrairyServiceImpl implements LibrairyService {
     public Librairy updateLibrairy(Librairy librairy, Long id) {
 
         Librairy updateLibrairy = librairyRepository.findById(id).get();
-        updateLibrairy.setNom(updateLibrairy.getNom());
-        updateLibrairy.setLivre(updateLibrairy.getLivre());
-        updateLibrairy.setEmail(updateLibrairy.getEmail());
-        updateLibrairy.setTelephone(updateLibrairy.getTelephone());
-        updateLibrairy.setAdresse(updateLibrairy.getAdresse());
+        updateLibrairy.setNom(librairy.getNom());
+        updateLibrairy.setLivre(librairy.getLivre());
+        updateLibrairy.setEmail(librairy.getEmail());
+        updateLibrairy.setTelephone(librairy.getTelephone());
+        updateLibrairy.setAdresse(librairy.getAdresse());
+
         return librairyRepository.save(updateLibrairy);
     }
 
@@ -67,4 +74,12 @@ public class LibrairyServiceImpl implements LibrairyService {
         return librairyRepository.findByDeleted(deleted);
     }
 
+    @Override
+    public byte[] getPhoto(Long id) throws IllegalStateException, IOException {
+        Librairy photo = librairyRepository.findById(id).get();
+        String livrePhoto =photo.getPhoto();
+        File file = new File("src/main/resources/librairy/images/"+photo.getIdLibrairy()+"/"+livrePhoto);
+        Path path = Paths.get(file.toURI());
+        return  Files.readAllBytes(path);
+    }
 }

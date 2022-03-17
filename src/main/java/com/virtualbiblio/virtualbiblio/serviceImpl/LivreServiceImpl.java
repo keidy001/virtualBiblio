@@ -1,6 +1,7 @@
 package com.virtualbiblio.virtualbiblio.serviceImpl;
 
 import com.virtualbiblio.virtualbiblio.model.Admin;
+import com.virtualbiblio.virtualbiblio.model.Category;
 import com.virtualbiblio.virtualbiblio.model.Format;
 import com.virtualbiblio.virtualbiblio.model.Livre;
 import com.virtualbiblio.virtualbiblio.repository.LivreRepository;
@@ -116,6 +117,11 @@ public class LivreServiceImpl implements LivreService {
     @Override
     public List<Livre> listByDeleted(Boolean deleted) {
         return livreRepository.findByDeleted(deleted);
+    }
+
+    @Override
+    public List<Livre> listByFormatAndCategoryAndDeleted(Format format, Category category, Boolean deleted) {
+        return livreRepository.findByFormatAndCategoryAndDeleted(format, category,deleted);
     }
 
 }

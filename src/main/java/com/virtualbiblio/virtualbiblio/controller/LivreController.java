@@ -115,4 +115,7 @@ public class LivreController {
     public List<Livre> findByFormatAndDeleted(@PathVariable("format") Format format,@PathVariable("state") Boolean state) {
         return livreService.findByFormatAndDeleted(format, state);
     }
+    public List<Livre> listByFormatAndCategoryAndDeleted(Format format, Category category, Boolean deleted) {
+        return livreService.listByFormatAndCategoryAndDeleted(format, category, deleted);
+    }
 }
