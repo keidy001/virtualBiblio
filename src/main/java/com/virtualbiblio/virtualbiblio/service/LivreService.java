@@ -29,6 +29,6 @@ public interface LivreService {
     byte[] getPdf(Long id) throws IllegalStateException, IOException;
     List<Livre> listByDeleted(Boolean deleted);
     List<Livre> listByFormatAndCategoryAndDeleted(Format format, Category category,Boolean deleted);
-    List<Livre> livreByLibrairy(Librairy librairy);
+    List<Livre> livreByLibrairy(Librairy librairy, Boolean deleted);
 
 }

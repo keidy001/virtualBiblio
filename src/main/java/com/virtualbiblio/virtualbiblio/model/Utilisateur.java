@@ -13,8 +13,11 @@ public class Utilisateur implements Serializable {
     private Long idUtilisateur;
     private String nom;
     private String prenom;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private int telephone;
+    @Column(unique = true)
     private String login;
     private String password;
     private String profile;

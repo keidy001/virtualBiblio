@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class LivreServiceImpl implements LivreService {
@@ -124,8 +125,10 @@ public class LivreServiceImpl implements LivreService {
     public List<Livre> listByFormatAndCategoryAndDeleted(Format format, Category category, Boolean deleted) {
         return livreRepository.findByFormatAndCategoryAndDeleted(format, category, deleted);
     }
-    public List<Livre> livreByLibrairy(Librairy librairy) {
-        return livreRepository.findByLibrairy(librairy);
+    public List<Livre> livreByLibrairy(Librairy librairy, Boolean deleted) {
+
+        return livreRepository.findByLibrairyAndDeleted(librairy,deleted);
     }
+
 
 }

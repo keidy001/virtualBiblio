@@ -115,12 +115,13 @@ public class LivreController {
     public List<Livre> findByFormatAndDeleted(@PathVariable("format") Format format,@PathVariable("state") Boolean state) {
         return livreService.findByFormatAndDeleted(format, state);
     }
-
-    public List<Livre> listByFormatAndCategoryAndDeleted(Format format, Category category, Boolean deleted) {
+@GetMapping("/bycat/{format}/{category}/{state}")
+    public List<Livre> listByFormatAndCategoryAndDeleted(@PathVariable("format") Format format,@PathVariable("category") Category category, @PathVariable("state") Boolean deleted) {
         return livreService.listByFormatAndCategoryAndDeleted(format, category, deleted);
     }
-@GetMapping("/livreByLibrairy/{library}")
-    public List<Livre> livreByLibrairy(@PathVariable("library") Librairy librairy) {
-        return livreService.livreByLibrairy(librairy);
+@GetMapping("/livreByLibrairy/{library}/{state}")
+    public List<Livre> livreByLibrairy(@PathVariable("library") Librairy librairy, @PathVariable("state") Boolean deleted) {
+        return livreService.livreByLibrairy(librairy, deleted);
     }
+
 }
