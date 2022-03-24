@@ -9,6 +9,7 @@ import com.virtualbiblio.virtualbiblio.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,16 +19,17 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     UtilisateurRepository utilisateurRepository;
     @Autowired
     MailSenderService mailSenderService;
+    @Transactional
     @Override
     public String ajoutUtilisateur(Utilisateur utilisateur) {
+
+         utilisateurRepository.save(utilisateur);
         mailSenderService.sendEmail(
                 utilisateur.getEmail(),
-                "Votre compte a été créer avec succès ",
+                "Votre compte a été créer avec succès \n pour activer votre compte veillez cliquez sur ce lien http://localhost:8080/api/utilisateur/restore/"+utilisateur.getIdUtilisateur(),
                 "Création de compte sur Vbiblio http://localhost:8080/api/utilisateur"
 
         );
-         utilisateurRepository.save(utilisateur);
-
          return "success";
     }
 
@@ -65,13 +67,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur disable(Long id) {
         Utilisateur disable = utilisateurRepository.findById(id).get();
         disable.setDeleted(true);
-        return null;
+        return utilisateurRepository.save(disable);
     }
 
+    @Transactional
     @Override
     public Utilisateur restore(Long id) {
         Utilisateur restore = utilisateurRepository.findById(id).get();
         restore.setDeleted(false);
+        utilisateurRepository.save(restore);
         return null;
     }
 
