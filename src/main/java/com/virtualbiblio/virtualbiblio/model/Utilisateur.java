@@ -29,7 +29,7 @@ public class Utilisateur implements Serializable {
     private List<Documents> documents;
     @ManyToOne
     Admin admin;
-    private boolean deleted= false;
+    private boolean deleted= true;
 
     public Utilisateur() {
 

@@ -39,7 +39,7 @@ public class UtilisateurController {
     public Utilisateur disable(@PathVariable("id") Long id) {
         return utilisateurService.disable(id);
     }
-    @PutMapping("/restore")
+    @GetMapping("/restore/{id}")
     public Utilisateur restore(@PathVariable("id") Long id) {
         return utilisateurService.restore(id);
     }
