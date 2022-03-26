@@ -7,6 +7,7 @@ import com.virtualbiblio.virtualbiblio.model.Utilisateur;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UtilisateurService {
@@ -20,5 +21,7 @@ public interface UtilisateurService {
     Utilisateur restore(Long id);
     Utilisateur login(String login, String password);
     List<Utilisateur> listByDeleted(Boolean deleted);
+    Utilisateur resetpassword(String email);
+    Utilisateur changePassword(Long id);
 
 }
