@@ -119,8 +119,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur changePassword(Long id) {
         Utilisateur utilisateur = utilisateurRepository.findById(id).get();
         utilisateur.setPassword(utilisateur.getPassword());
-        utilisateurRepository.save(utilisateur);
-        return
+
+        return utilisateurRepository.save(utilisateur);
     }
 
 }
