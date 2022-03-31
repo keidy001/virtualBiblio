@@ -100,4 +100,27 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepository.findByDeleted(deleted);
     }
 
+    @Override
+    public Utilisateur resetpassword(String email) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findByEmail(email);
+
+        if(utilisateur.isEmpty())
+        {
+            return null;
+        }else {
+
+
+            return null;
+        }
+
+    }
+
+    @Override
+    public Utilisateur changePassword(Long id) {
+        Utilisateur utilisateur = utilisateurRepository.findById(id).get();
+        utilisateur.setPassword(utilisateur.getPassword());
+
+        return utilisateurRepository.save(utilisateur);
+    }
+
 }
