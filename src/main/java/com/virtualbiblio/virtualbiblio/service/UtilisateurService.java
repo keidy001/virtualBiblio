@@ -22,6 +22,6 @@ public interface UtilisateurService {
     Utilisateur login(String login, String password);
     List<Utilisateur> listByDeleted(Boolean deleted);
     Utilisateur resetpassword(String email);
-    Utilisateur changePassword(Long id);
+    Utilisateur changePassword(Long id, Utilisateur utilisateur);
 
 }

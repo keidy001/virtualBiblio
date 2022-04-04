@@ -12,6 +12,7 @@ public class Livre implements Serializable {
     private String titre;
     private String auteur;
     private String sommaire;
+    @Column(length = 100000)
     private String description;
     @Enumerated(EnumType.STRING)
     private Format format;

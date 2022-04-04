@@ -51,4 +51,8 @@ public class UtilisateurController {
     public List<Utilisateur> listByDeleted(@PathVariable("state") Boolean deleted) {
         return utilisateurService.listByDeleted(deleted);
     }
+@PutMapping("changePass/{id}")
+    public Utilisateur changePassword(@PathVariable("id") Long id,@RequestBody Utilisateur utilisateur) {
+        return utilisateurService.changePassword(id, utilisateur);
+    }
 }

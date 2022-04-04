@@ -47,13 +47,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public Utilisateur updateUtilisateur(Utilisateur utilisateur, Long id) {
         Utilisateur updateUtilisateur = utilisateurRepository.findById(id).get();
 
-        updateUtilisateur.setNom(updateUtilisateur.getNom());
-        updateUtilisateur.setPrenom(updateUtilisateur.getPrenom());
-        updateUtilisateur.setEmail(updateUtilisateur.getEmail());
-        updateUtilisateur.setLogin(updateUtilisateur.getLogin());
-        updateUtilisateur.setTelephone(updateUtilisateur.getTelephone());
-        updateUtilisateur.setPassword(updateUtilisateur.getPassword());
-        updateUtilisateur.setProfile(updateUtilisateur.getProfile());
+        updateUtilisateur.setNom(utilisateur.getNom());
+        updateUtilisateur.setPrenom(utilisateur.getPrenom());
+        updateUtilisateur.setEmail(utilisateur.getEmail());
+        updateUtilisateur.setLogin(utilisateur.getLogin());
+        updateUtilisateur.setTelephone(utilisateur.getTelephone());
+        updateUtilisateur.setPassword(utilisateur.getPassword());
+        updateUtilisateur.setProfile(utilisateur.getProfile());
         return utilisateurRepository.save(updateUtilisateur);
     }
 
@@ -116,11 +116,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     }
 
     @Override
-    public Utilisateur changePassword(Long id) {
-        Utilisateur utilisateur = utilisateurRepository.findById(id).get();
-        utilisateur.setPassword(utilisateur.getPassword());
+    public Utilisateur changePassword(Long id, Utilisateur utilisateur) {
+        Utilisateur Updateutilisateur = utilisateurRepository.findById(id).get();
 
-        return utilisateurRepository.save(utilisateur);
+        Updateutilisateur.setPassword(utilisateur.getPassword());
+
+            return utilisateurRepository.save(Updateutilisateur);
     }
 
 }
