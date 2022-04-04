@@ -37,7 +37,7 @@ public class LibrairyController {
     }
 
     @GetMapping("/afficher/{id}")
-    public Librairy afficheLibrairy(Long id) {
+    public Librairy afficheLibrairy(@PathVariable("id") Long id) {
         return librairyService.afficheLibrairy(id);
     }
     @GetMapping("/lister")
